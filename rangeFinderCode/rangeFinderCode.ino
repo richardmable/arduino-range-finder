@@ -1,4 +1,8 @@
 #include <EYW.h>
+#include <Servo.h>
+#include <Wire.h>
+
+
 
 // this names the RangeFinder as proximity
 EYW::RangeFinder proximity;
@@ -15,8 +19,10 @@ void setup() {
   // this calibrates the sensor with an object 10cm away
   // it will then sound an alarm when it has been calibrated
   proximity.begin();
-  proximity.alarm();
+  // proximity.alarm();
+  Serial.println("calibrating");
   proximity.calibrate(10);
+  Serial.println("calibrated!");
 }
 
 void loop() {
@@ -29,6 +35,6 @@ void loop() {
 
   if (distance < 10)
   {
-    proximity.alarm(2,2000,100);
+    Serial.println("distance is less then 10cm");
   }
 }
